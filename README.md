@@ -73,6 +73,67 @@ Client-server chat applications are versatile tools that facilitate real-time co
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
 
+## Program: 
+## Server:
+```
+import socket
+
+SERVER_HOST = '127.0.0.1'  
+SERVER_PORT = 12345        
+BUFFER_SIZE = 1024       
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind((SERVER_HOST, SERVER_PORT))
+server_socket.listen(1)  
+
+print(f"[*] Listening on {SERVER_HOST}:{SERVER_PORT}")
+
+client_socket, client_address = server_socket.accept()
+print(f"[+] {client_address} connected.")
+
+while True:
+    message = client_socket.recv(BUFFER_SIZE).decode()
+    if not message:
+    print(f"Client: {message}")
+
+    message_to_send = input("Server: ")
+    client_socket.send(message_to_send.encode())
+
+client_socket.close()
+server_socket.close()
+
+```
+## Client:
+```
+import socket
+
+SERVER_HOST = '127.0.0.1'  
+SERVER_PORT = 12345        
+BUFFER_SIZE = 1024          
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect((SERVER_HOST, SERVER_PORT))
+
+print(f"Connected to server at {SERVER_HOST}:{SERVER_PORT}")
+
+while True:
+
+    message_to_send = input("Client: ")
+    client_socket.send(message_to_send.encode())
+
+    message = client_socket.recv(BUFFER_SIZE).decode()
+    if not message:
+    print(f"Server: {message}")
+
+client_socket.close()
+```
+## Output:
+
+## Server:
+![365626072-9e64e059-cab0-40d0-ba14-cc791bfa8954](https://github.com/user-attachments/assets/0add441b-5973-4205-9b64-b3ac5bb81ceb)
+
+## Client:
+![365626079-afcc7b91-5fc1-4cc9-90d1-0a690c43053e](https://github.com/user-attachments/assets/105a11b6-eb4b-4d62-9600-87b70f1a12af)
 
 ## Result:
 
