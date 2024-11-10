@@ -1,3 +1,6 @@
+## NAME: RAMKUMAR G
+## REG NO: 212223220084
+
 # Ex. No:1b 			Study of Client Server Chat Applications
 
 ## Aim: 
